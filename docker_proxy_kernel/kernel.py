@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 import json
 import signal
 
@@ -81,6 +82,7 @@ class DockerProxyKernel(object):
              '-p', '{shell_port}:{docker_shell_port}'.format(**self.config),
              '-p', '{stdin_port}:{docker_stdin_port}'.format(**self.config),
              '-v', '{:s}:{:s}'.format(cwd_,cwd_),
+             '-w', '{:s}'.format(cwd_),
              '--name={}'.format(docker_name)] + docker_arguments + \
             [docker_image] + cmd + \
             ["--control={docker_control_port}".format(**self.config),
