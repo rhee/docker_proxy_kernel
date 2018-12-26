@@ -70,6 +70,8 @@ class DockerProxyKernel(object):
 
       if docker_image:
 
+        cwd_ = os.getcwd()
+
         command = docker + \
             ['run', '-i', '--rm',
              '-p', '{control_port}:{docker_control_port}'.format(
@@ -78,6 +80,7 @@ class DockerProxyKernel(object):
              '-p', '{iopub_port}:{docker_iopub_port}'.format(**self.config),
              '-p', '{shell_port}:{docker_shell_port}'.format(**self.config),
              '-p', '{stdin_port}:{docker_stdin_port}'.format(**self.config),
+             '-v', '{:s}:{:s}'.format(cwd_,cwd_),
              '--name={}'.format(docker_name)] + docker_arguments + \
             [docker_image] + cmd + \
             ["--control={docker_control_port}".format(**self.config),
