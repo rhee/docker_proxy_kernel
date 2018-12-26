@@ -1,0 +1,21 @@
+{
+    "display_name" : "py27_caffe_docker",
+    "argv" : [
+        "/opt/conda/bin/python", "-m", "docker_proxy_kernel",
+        "-f", "{connection_file}",
+        "--image", "rfcn-gpu-devel:0.2",
+        "--docker", "nvidia-docker",
+        "--cmd", "['/usr/bin/python', '-m', 'ipykernel']",
+        "--",
+        "-v", "/var/home/user01:/var/home/user01",
+        "-v", "/var/data:/var/data",
+        "-v", "/E:/E",
+        "-v", "/F:/F",
+        "-v", "/G:/G",
+        "-v", "/.F:/.F",
+        "-v", "/.G:/.G",
+        "-v", "/SSD:/SSD"
+    ],
+    "env": {},
+    "language": "python"
+}
